@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+        body{ font-family: 'Quicksand', sans-serif; }
+    </style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script id="script" type="text/javascript">
+        $(document).ready(function(){
+            // Ecrire les scripts ici
+            $.ajax({
+                url: 'http://www.labri.fr/perso/pbiasutt/KDJS/TD02/functions.php',
+                method: 'GET',
+                dataType: 'script',
+                beforeSend: function(){ console.log('Envoi de la requête ...'); },
+                complete: function(data){
+                    console.log('Réponse reçue');
+                }
+            });
+
+            $('#form').submit(function(e) {
+                if(isPrime(e).val()) {
+                    console.log("Premier !");
+                } else {
+                    console.log("Non Premier !");
+                }
+            })
+
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+<!-- Code HTML -->
+<form id="form" method="post">
+    <input type="number" placeholder="Rentrez un nombre !"/>
+    <input class="btn" type="submit" value="Envoyer"/>
+</form>
+</body>
+
+</html>

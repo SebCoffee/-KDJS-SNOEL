@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exo 1</title>
+
+    <style>
+        .bord {
+            width: 100%;
+            height: 250px;
+            border: 2px solid #000;
+        }
+
+        .draggable {
+            width: 80%;
+            height: 175px;
+            background-color: red;
+        }
+
+        .draggable:hover {
+            cursor: move;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $("#sortable").sortable({
+                containment: "parent",
+                start: function () {
+                    var X = 0;
+                    var Y = 0;
+                    $(".bord").mousemove(function(e){
+                        X = e.pageX;
+                        Y = e.pageY;
+                        $('.coord').empty();
+                        $('.coord').append('<p> X : '+ X +', Y : '+ Y +'</p>');
+                    });
+                }
+            });
+
+            $('#draggable').sortable({
+                containment: "parent",
+                axis: "y",
+                update: function () {
+
+                }
+            })
+        } );
+    </script>
+</head>
+<body>
+    <div class="bord" id="sortable">
+        <div class="draggable">
+
+        </div>
+    </div>
+
+    <div class="coord"></div>
+
+
+    <ul id="draggable">
+        <li>Bordeaux</li>
+        <li>Agen</li>
+        <li>Toulouse</li>
+        <li>Bayonne</li>
+        <li>Paris</li>
+        <li>Marseil</li>
+        <li>Perpignan</li>
+    </ul>
+
+<button onclick="alert($('#draggable').text())">Afficher</button>
+</body>
+</html>

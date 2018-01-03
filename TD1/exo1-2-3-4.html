@@ -1,0 +1,82 @@
+<!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Exercice 05</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+        body{ font-family: 'Quicksand', sans-serif; }
+    </style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        var Personne = {
+            nom: "",
+            prenom: "",
+            numEtudiant: "",
+            age : [5, 6, 1996],
+
+            init: function(nom, prenom, age){
+                this.nom = nom;
+                this.prenom = prenom;
+                this.age = age;
+            },
+
+            decrire: function() {console.log(this)},
+
+            age: function direAge(jour, mois, annee) {
+                var date = new Date();
+
+                var ynew = date.getFullYear();
+                var mnew = date.getMonth();
+                var dnew = date.getDate();
+                var yold = annee;
+                var mold = mois;
+                var dold = jour;
+                var diff = ynew - yold;
+                if(mold > mnew) diff--;
+                else
+                {
+                    if(mold == mnew)
+                    {
+                        if(dold > dnew) diff--;
+                    }
+                }
+                return diff;
+            }
+        };
+        var etd = Object.create(Personne);
+        etd.numEtudiant =  '';
+
+        etd.initEtudiant = function(nom, prenom, dateNaissance, numEtu) {
+            this.init(nom, prenom, this.age(dateNaissance[0],dateNaissance[1], dateNaissance[2]));
+            this.numEtudiant = numEtu;
+            this.decrire();
+        };
+
+        var etudiant = Object.create(etd);
+        etudiant.initEtudiant('NOEL', 'Sébastien', [18, 05, 1997], 123456789)
+
+        var prof = Object.create(Personne);
+        prof.mail = '';
+
+        prof.initProf = function(nom, prenom,dateNaissance, mail ) {
+            // On appelle la fonction de l’objet Personne
+            this.init(nom, prenom, this.age(dateNaissance[0],dateNaissance[1], dateNaissance[2]));
+            this.mail = mail;
+            this.decrire();
+        };
+
+        var professeur = Object.create(prof);
+        professeur.initProf('Durand', 'Kevin', [27, 03, 1970], 'durand.kevin@gmail.com');
+    </script>
+</head>
+<body>
+
+</body>
+
+</html>

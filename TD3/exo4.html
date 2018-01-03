@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js">
+    </script>
+</head>
+
+<body>
+
+<div ng-app="app02" ng-controller="controlleur02">
+    <form>
+        <label>Premier nombre : </label><input type="text" ng-model="number1">
+        <label>Second nombre : </label><input type="text" ng-model="number2">
+        <label>Oppération : </label>
+        <select ng-model="opp">
+            <option> plus </option>
+            <option> moins </option>
+            <option> foix </option>
+        </select>
+    </form>
+
+    <p>Résultat : {{ result(number1, number2, opp) }}</p>
+</div>
+
+<script>
+    var test = angular.module("app02", []);
+    
+    test.controller("controlleur02", function ($scope) {
+        $scope.result = function(number1, number2, opp){
+            if (opp == ' plus ') {
+                return parseInt(number1) + parseInt(number2)
+            }
+            if (opp == ' moins ') {
+                return parseInt(number1) - parseInt(number2)
+            }
+            if (opp == ' foix ') {
+                return parseInt(number1) * parseInt(number2)
+            }
+
+        }
+    });
+    </script>
+
+</body>
+</html>

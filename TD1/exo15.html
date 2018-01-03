@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8" />
+ 
+    <title>Titre de la page</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+            var avant = false;
+
+            $('#ajoutAvant').on("click", function (){
+                if (!avant) {
+                    avant = true;
+				} else if (avant) {
+                    avant = false;
+				}
+
+            });
+
+			$("form").submit(function () {
+			    //https://i.ytimg.com/vi/zofT1AaUsog/maxresdefault.jpg
+				$(".deb").remove();
+			    var elem = $("#type").val();
+			    var cont =$("#contenu").val();
+
+			    if (avant) {
+                    if (elem === 'h1') {
+                        $("#recipient").prepend("<h1></h1>");
+                        $("#recipient h1").text(cont);
+                    } if (elem === 'h2') {
+                        $("#recipient").prepend("<h2></h2>");
+                        $("#recipient h2").text(cont);
+                    } if (elem === 'h3') {
+                        $("#recipient").prepend("<h3></h3>");
+                        $("#recipient h3").text(cont);
+                    } if (elem === 'p') {
+                        $("#recipient").prepend("<p></p>");
+                        $("#recipient p").text(cont);
+                    } if (elem === 'img') {
+                        $("#recipient").prepend("<img width='250'>");
+                        $("#recipient img").attr("src", cont);
+                    } if (elem === 'a') {
+                        $("#recipient").prepend("<a target='_blank'></a><br>");
+                        $("#recipient a").attr('href', "exo14.html");
+                        $("#recipient a").text(cont);
+                    } if (elem === 'input:text') {
+                        $("#recipient").prepend("<input type='text'><br>");
+                        $("#recipient input:text").val(cont);
+                    } if (elem === 'input:submit') {
+                        $("#recipient").prepend("<input type='submit'><br>");
+                        $("#recipient input:submit").val(cont);
+                    } if (elem === 'label') {
+                        $("#recipient").prepend("<label></label><br>");
+                        $("#recipient label").text(cont);
+                    }
+				} else {
+                    if (elem === 'h1') {
+                        $("#recipient").append("<h1></h1>");
+                        $("#recipient h1").text(cont);
+                    } if (elem === 'h2') {
+                        $("#recipient").append("<h2></h2>");
+                        $("#recipient h2").text(cont);
+                    } if (elem === 'h3') {
+                        $("#recipient").append("<h3></h3>");
+                        $("#recipient h3").text(cont);
+                    } if (elem === 'p') {
+                        $("#recipient").append("<p></p>");
+                        $("#recipient p").text(cont);
+                    } if (elem === 'img') {
+                        $("#recipient").append("<img width='250'>");
+                        $("#recipient img").attr("src", cont);
+                    } if (elem === 'a') {
+                        $("#recipient").append("<a target='_blank'></a><br>");
+                        $("#recipient a").attr('href', "exo14.html");
+                        $("#recipient a").text(cont);
+                    } if (elem === 'input:text') {
+                        $("#recipient").append("<input type='text'><br>");
+                        $("#recipient input:text").val(cont);
+                    } if (elem === 'input:submit') {
+                        $("#recipient").append("<input type='submit'><br>");
+                        $("#recipient input:submit").val(cont);
+                    } if (elem === 'label') {
+                        $("#recipient").append("<label></label><br>");
+                        $("#recipient label").text(cont);
+                    }
+				}
+
+                return false;
+			});
+
+			$(".reni").click(function (){
+			   $('#recipient').empty();
+			   $('#recipient').append("<p class='deb'>La page est vide pour l'instant...</p>")
+			});
+
+			$(".gener").click(function (){
+			   var test = $("#recipient").html();
+			   alert(test);
+			});
+
+    	});
+   	</script>
+</head>
+<body>
+	<div id="generateur">
+		<form method="post">
+			<label for="type">Type d'élément</label>
+			<br />
+			<select name="type" id="type">
+				<option value="h1">Titre (h1)</option>
+				<option value="h2">Titre (h2)</option>
+				<option value="h3">Titre (h3)</option>
+				<option value="p">Paragraphe (p)</option>
+				<option value="img">Image (img)</option>
+				<option value="a">Lien (a))</option>
+				<option value="input:text">Champ de texte (input:text)</option>
+				<option value="input:submit">Bouton (input:submit)</option>
+				<option value="label">Label (label)</option>
+			</select>
+			<br />
+			<label for="contenu">Contenu de l'élément</label><br />
+			<input type="text" placeholder="Contenu" id="contenu" name="contenu" />
+			<br />
+			<label for="ajoutAvant">Ajouter avant</label>
+			<input type="checkbox" name="ajoutAvant" id="ajoutAvant" />
+			<br />
+			<input type="submit" value="Ajouter" />
+			<input class="reni" type="button" value="Réinitialiser" />
+			<input class="gener" type="button" value="Générer" />
+		</form>
+	</div>
+
+	<div id="recipient">
+		<p class="deb">La page est vide pour l'instant...</p>
+	</div>
+
+
+
+
+	<!-- Style -->
+	<style>
+		body{
+			font-family: 'Quicksand', sans-serif;
+			background-color: #FCFCFC;
+		}
+
+		#generateur{
+			float: right;
+			border: 1px solid #C1C2CC;
+			padding: 15px;
+			border-radius: 3px;
+			background: #F1F1F1;
+		}
+
+		#generateur label{ font-weight: bold;}
+		#generateur select{ margin-bottom: 10px; width: 200px; border: 1px solid #666; }
+		#generateur input[type=text]{ margin-bottom: 10px; width: 188px; border: 1px solid #666; padding: 5px; border-radius: 3px;}
+		#generateur input[type=checkbox]{ margin-bottom: 10px; }
+
+		#generateur input[type=submit]{ background-color: #83D833; }
+		#generateur input[type=button]{ background-color: #E80612; }
+		#generateur input[type=button]:last-child{ background-color: #FCC325; }
+		#generateur input[type=submit],
+		#generateur input[type=button]{ color: white; border-radius: 3px; border: none; padding: 9px;}
+		#generateur input[type=submit]:hover,
+		#generateur input[type=button]:hover{ opacity: 0.7; cursor: pointer;}
+
+		#recipient{
+			margin-right: 250px;
+			padding: 15px;
+			border-radius: 3px;
+			border: 1px solid #C1C2CC;
+		}
+	</style>
+</body>
+ 
+</html>
